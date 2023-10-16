@@ -1,22 +1,20 @@
 const productWrapper = document.querySelector("#products .container .products-wrapper");
 
 let getProductsFromApi = async () => {
-    let response = await fetch('https://dummyjson.com/products');
-    let data = await response.json()
-    console.log(data)
-    displayProducts(data.products)
+  let response = await fetch('https://dummyjson.com/products');
+  let data = await response.json()
+  displayProducts(data.products)
 }
 getProductsFromApi()
 
 let displayProducts = (data) => {
-    productWrapper.innerHTML = "";
-    data.forEach((product) => {
-        productWrapper.innerHTML += ` <div class="product-card">
+  productWrapper.innerHTML = "";
+  data.forEach((product) => {
+    productWrapper.innerHTML += ` <div class="product-card">
         <div class="product-image-box">
           <img
             class="product-img"
-            src="${product.thumbnail
-            }"
+            src="${product.thumbnail}"
             alt=""
           />
         </div>
@@ -26,23 +24,23 @@ let displayProducts = (data) => {
         </div>
         <div class="product-price-box">
           <span class="product-current-price">
-          ${(product.price - ((product.price * product.discountPercentage) / 100).toFixed())} $
+          ${(product.price - ((product.price * product.discountPercentage) / 100).toFixed(1))}$
           </span>
-          <span class="product-old-price"><del>${product.price} $</del></span>
+          <span class="product-old-price"><del>${product.price}$</del></span>
         </div>
         <div class="products-buttons">
           <div class="add-to-cart" data-id = "${product.id}">
-            <img src="./images/Bag_alt.png" alt="" class="cart-icon" />
+            <img src="./images/Bag_alt.svg" alt="" class="cart-icon" />
             <span>Add to cart</span>
           </div>
           <div class="favorite" data-id="${product.id}">
             <img
-              src="./images/Favorite.png"
+              src="./images/Vector 15.svg "
               alt=""
               class="favorite-icon"
             />
           </div>
         </div>
       </div>`
-    })
+  })
 }
